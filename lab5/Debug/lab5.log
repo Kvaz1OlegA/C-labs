@@ -1,0 +1,3 @@
+﻿  lab5.c
+E:\university\progs\C\lab5\lab5.c(239): warning C4715: Get: значение возвращается не при всех путях выполнения
+  lab5.vcxproj -> E:\university\progs\C\lab5\Debug\lab5.exe
