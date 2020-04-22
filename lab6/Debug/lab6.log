@@ -1,0 +1,4 @@
+﻿  lab6.c
+E:\university\progs\C\lab6\lab6.c(112): warning C4715: GetListData: значение возвращается не при всех путях выполнения
+E:\university\progs\C\lab6\lab6.c(289): warning C4715: GetStackData: значение возвращается не при всех путях выполнения
+  lab6.vcxproj -> E:\university\progs\C\lab6\Debug\lab6.exe
