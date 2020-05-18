@@ -66,9 +66,15 @@
             this.digital_signature_button = new System.Windows.Forms.Button();
             this.confirming_signature_button = new System.Windows.Forms.Button();
             this.panel4 = new System.Windows.Forms.Panel();
+            this.upload_signature_button = new System.Windows.Forms.Button();
+            this.save_signature_button = new System.Windows.Forms.Button();
             this.label15 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
             this.textBox_signature_encrypted = new System.Windows.Forms.TextBox();
+            this.save_to_file_button = new System.Windows.Forms.Button();
+            this.upload_from_file_button = new System.Windows.Forms.Button();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -78,7 +84,7 @@
             // EncryptionButton
             // 
             this.EncryptionButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.EncryptionButton.Location = new System.Drawing.Point(1104, 905);
+            this.EncryptionButton.Location = new System.Drawing.Point(977, 905);
             this.EncryptionButton.Name = "EncryptionButton";
             this.EncryptionButton.Size = new System.Drawing.Size(121, 44);
             this.EncryptionButton.TabIndex = 0;
@@ -89,7 +95,7 @@
             // DecryptionButton
             // 
             this.DecryptionButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.DecryptionButton.Location = new System.Drawing.Point(1599, 905);
+            this.DecryptionButton.Location = new System.Drawing.Point(1472, 905);
             this.DecryptionButton.Name = "DecryptionButton";
             this.DecryptionButton.Size = new System.Drawing.Size(121, 44);
             this.DecryptionButton.TabIndex = 1;
@@ -277,7 +283,7 @@
             // clear_original_textbox
             // 
             this.clear_original_textbox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.clear_original_textbox.Location = new System.Drawing.Point(1104, 955);
+            this.clear_original_textbox.Location = new System.Drawing.Point(977, 955);
             this.clear_original_textbox.Name = "clear_original_textbox";
             this.clear_original_textbox.Size = new System.Drawing.Size(121, 44);
             this.clear_original_textbox.TabIndex = 20;
@@ -288,7 +294,7 @@
             // clear_encrypted_textbox
             // 
             this.clear_encrypted_textbox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.clear_encrypted_textbox.Location = new System.Drawing.Point(1599, 955);
+            this.clear_encrypted_textbox.Location = new System.Drawing.Point(1472, 955);
             this.clear_encrypted_textbox.Name = "clear_encrypted_textbox";
             this.clear_encrypted_textbox.Size = new System.Drawing.Size(121, 44);
             this.clear_encrypted_textbox.TabIndex = 21;
@@ -454,7 +460,7 @@
             // 
             // confirming_signature_button
             // 
-            this.confirming_signature_button.Location = new System.Drawing.Point(22, 108);
+            this.confirming_signature_button.Location = new System.Drawing.Point(22, 95);
             this.confirming_signature_button.Name = "confirming_signature_button";
             this.confirming_signature_button.Size = new System.Drawing.Size(147, 42);
             this.confirming_signature_button.TabIndex = 26;
@@ -467,6 +473,8 @@
             this.panel4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(13)))), ((int)(((byte)(170)))), ((int)(((byte)(172)))));
+            this.panel4.Controls.Add(this.upload_signature_button);
+            this.panel4.Controls.Add(this.save_signature_button);
             this.panel4.Controls.Add(this.label15);
             this.panel4.Controls.Add(this.label14);
             this.panel4.Controls.Add(this.textBox_signature_encrypted);
@@ -478,6 +486,26 @@
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(883, 254);
             this.panel4.TabIndex = 27;
+            // 
+            // upload_signature_button
+            // 
+            this.upload_signature_button.Location = new System.Drawing.Point(22, 191);
+            this.upload_signature_button.Name = "upload_signature_button";
+            this.upload_signature_button.Size = new System.Drawing.Size(147, 42);
+            this.upload_signature_button.TabIndex = 30;
+            this.upload_signature_button.Text = "Upload signature";
+            this.upload_signature_button.UseVisualStyleBackColor = true;
+            this.upload_signature_button.Click += new System.EventHandler(this.upload_signature_button_Click);
+            // 
+            // save_signature_button
+            // 
+            this.save_signature_button.Location = new System.Drawing.Point(22, 143);
+            this.save_signature_button.Name = "save_signature_button";
+            this.save_signature_button.Size = new System.Drawing.Size(147, 42);
+            this.save_signature_button.TabIndex = 29;
+            this.save_signature_button.Text = "Save signature";
+            this.save_signature_button.UseVisualStyleBackColor = true;
+            this.save_signature_button.Click += new System.EventHandler(this.save_signature_button_Click);
             // 
             // label15
             // 
@@ -512,6 +540,30 @@
             this.textBox_signature_encrypted.Size = new System.Drawing.Size(316, 190);
             this.textBox_signature_encrypted.TabIndex = 24;
             // 
+            // save_to_file_button
+            // 
+            this.save_to_file_button.Location = new System.Drawing.Point(1646, 906);
+            this.save_to_file_button.Name = "save_to_file_button";
+            this.save_to_file_button.Size = new System.Drawing.Size(121, 43);
+            this.save_to_file_button.TabIndex = 28;
+            this.save_to_file_button.Text = "Save to file";
+            this.save_to_file_button.UseVisualStyleBackColor = true;
+            this.save_to_file_button.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // upload_from_file_button
+            // 
+            this.upload_from_file_button.Location = new System.Drawing.Point(1646, 955);
+            this.upload_from_file_button.Name = "upload_from_file_button";
+            this.upload_from_file_button.Size = new System.Drawing.Size(121, 43);
+            this.upload_from_file_button.TabIndex = 29;
+            this.upload_from_file_button.Text = "Upload from file";
+            this.upload_from_file_button.UseVisualStyleBackColor = true;
+            this.upload_from_file_button.Click += new System.EventHandler(this.button3_Click);
+            // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.FileName = "openFileDialog1";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -519,6 +571,8 @@
             this.AutoScroll = true;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1924, 1010);
+            this.Controls.Add(this.upload_from_file_button);
+            this.Controls.Add(this.save_to_file_button);
             this.Controls.Add(this.panel4);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);
@@ -589,6 +643,12 @@
         private System.Windows.Forms.TextBox textBox_signature_encrypted;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Button save_to_file_button;
+        private System.Windows.Forms.Button upload_from_file_button;
+        private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        private System.Windows.Forms.SaveFileDialog saveFileDialog1;
+        private System.Windows.Forms.Button upload_signature_button;
+        private System.Windows.Forms.Button save_signature_button;
     }
 }
 

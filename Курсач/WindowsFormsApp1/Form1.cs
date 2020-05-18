@@ -14,11 +14,11 @@ using System.Runtime.InteropServices;
 namespace WindowsFormsApp1
 {
     public partial class Form1 : Form
-    { 
+    {
         //------------------------------------------------------------------------------Часть кода отвечающая за генерацию простых чисел-------------------------------------------------
         private bool Check(int a)//Функция проверки числа на простотоу
         {
-            for(int i=2; i<a; i++)
+            for (int i = 2; i < a; i++)
             {
                 if (a % i == 0)
                     return false;
@@ -62,7 +62,7 @@ namespace WindowsFormsApp1
 
                 for (int i = k + 1; i < primes.Count(); i++)
                 {
-                    BigInteger p = new BigInteger(primes[i]); 
+                    BigInteger p = new BigInteger(primes[i]);
                     BigInteger r;
                     BigInteger.DivRem(p, three, out r);
 
@@ -84,13 +84,13 @@ namespace WindowsFormsApp1
 
                     for (int i = 0; i < mod3_1.Count(); i++)
                         addIfPrime(mod3_1[i], seed, s2, two, l);
-                    
-                    int n = 100000; 
+
+                    int n = 100000;
                     if (l.Count() > 0)
                         if (LenghtOfBin(l[0]) < 700) n = 10;
                         else if (LenghtOfBin(l[0]) < 800) n = 20;
                         else if (LenghtOfBin(l[0]) < 900) n = 40;
-                    if (l.Count() > n) break; 
+                    if (l.Count() > n) break;
                 }
 
                 ps = l;
@@ -104,7 +104,7 @@ namespace WindowsFormsApp1
                         secondPrime = l[rnd.Next(0, l.Count() - 1)];
                         if (firstPrime.ToString().Length == secondPrime.ToString().Length)
                         {
-                            if(firstPrime!=secondPrime)
+                            if (firstPrime != secondPrime)
                                 return;
                         }
                         else
@@ -114,7 +114,7 @@ namespace WindowsFormsApp1
             }
             while (l.Count() > 0);
         }
-        
+
         private static void addIfPrime(BigInteger a, BigInteger b, BigInteger b2, BigInteger two, List<BigInteger> l)
         {
 
@@ -126,18 +126,18 @@ namespace WindowsFormsApp1
                 r = BigInteger.ModPow(two, a, n);
 
             if (r != null && BigInteger.Compare(r, 1) == 0) return;
-            
+
             r = new BigInteger();
-            
+
             if (BigInteger.Compare(b2, a) < 0)
                 r = BigInteger.ModPow(two, b2, n);
             else if (BigInteger.Compare(b, a2) < 0)
                 r = BigInteger.ModPow(two, b, n);
-            
+
             if (r != null && BigInteger.Compare(r, 1) == 0) return;
-            
+
             r = BigInteger.ModPow(two, fp / 2, n);
-            
+
             if (BigInteger.Compare(r, 1) != 0) return;
             l.Add(n);
         }
@@ -154,9 +154,9 @@ namespace WindowsFormsApp1
 
             BigInteger bi;
             int size = s.Length;
-            for(int i=0; i<size; i++)
+            for (int i = 0; i < size; i++)
             {
-                bi = s[i];                
+                bi = s[i];
                 result.Add(BigInteger.ModPow(bi, e, n).ToString());
             }
 
@@ -175,10 +175,10 @@ namespace WindowsFormsApp1
 
                 bi = BigInteger.ModPow(bi, d, n);
                 try
-                { 
-                    result += (char)bi; 
+                {
+                    result += (char)bi;
                 }
-                catch(Exception)
+                catch (Exception)
                 {
                     MessageBox.Show("Problem of decryption. Check your keys");
                     break;
@@ -193,7 +193,7 @@ namespace WindowsFormsApp1
         {
             BigInteger reminder;
             BigInteger.DivRem(a, b, out reminder);
-            while(reminder!=BigInteger.Zero)
+            while (reminder != BigInteger.Zero)
             {
                 a = b;
                 b = reminder;
@@ -206,12 +206,12 @@ namespace WindowsFormsApp1
         private BigInteger Calculate_e(BigInteger m)//Вычисление открытого ключа
         {
             Random rnd = new Random();
-            while(true)
+            while (true)
             {
                 BigInteger d1 = rnd.Next(1000000000);
                 BigInteger d2 = rnd.Next(1000000000);
 
-                BigInteger d =BigInteger.Multiply(d1, d2);
+                BigInteger d = BigInteger.Multiply(d1, d2);
                 if (d > m)
                     continue;
                 else
@@ -227,7 +227,7 @@ namespace WindowsFormsApp1
             BigInteger tempA = a, tempB = b;
             BigInteger u1 = BigInteger.One, u2 = BigInteger.Zero, v1 = BigInteger.Zero, v2 = BigInteger.One;
             BigInteger temp = new BigInteger(), remainder = new BigInteger(), tempU = new BigInteger(), tempV = new BigInteger();
-            while(b!=1)
+            while (b != 1)
             {
                 BigInteger.DivRem(a, b, out remainder);
                 temp = BigInteger.Divide(a, b);
@@ -266,7 +266,7 @@ namespace WindowsFormsApp1
                     MessageBox.Show("The text field is empty");
             }
             else
-                MessageBox.Show("The public key is missing!"); 
+                MessageBox.Show("The public key is missing!");
         }
 
         private void DecryptionButton_Click(object sender, EventArgs e)//Кнопка дешифрования
@@ -323,7 +323,7 @@ namespace WindowsFormsApp1
                 textBox_n.Text = n.ToString();
                 textBox_e.Text = e_.ToString();
             }
-            else 
+            else
                 MessageBox.Show("Generate Prime numbers!");
         }
         //Кнопки очистки полей
@@ -389,7 +389,7 @@ namespace WindowsFormsApp1
 
                     string result = RSA_Dedoce(input, e_, n);
 
-                    if(result == textBox_signature_origin.Text)
+                    if (result == textBox_signature_origin.Text)
                         MessageBox.Show("The signature is verified");
                     else
                         MessageBox.Show("The signature is not verified");
@@ -399,6 +399,66 @@ namespace WindowsFormsApp1
             }
             else
                 MessageBox.Show("The public key is missing!");
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog saveFileDialog1 = new SaveFileDialog();
+            if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                StreamWriter writer = new StreamWriter(File.Create(saveFileDialog1.FileName));
+                writer.Write(textBox_encrypted.Text);
+                writer.Dispose();
+            }
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog1 = new OpenFileDialog();
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                StreamReader reader = new StreamReader(File.OpenRead(openFileDialog1.FileName));
+                textBox_encrypted.Text = reader.ReadToEnd();
+                reader.Dispose();
+            }
+        }
+        //----------------------------------------------------------------------------------------------------------------------------------------------------------
+        private void save_signature_button_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog saveFileDialog1 = new SaveFileDialog();
+            if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                StreamWriter writer = new StreamWriter(File.Create(saveFileDialog1.FileName));
+                writer.Write(textBox_signature_origin.Text);
+                writer.Dispose();
+            }
+            saveFileDialog1 = new SaveFileDialog();
+            if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                StreamWriter writer = new StreamWriter(File.Create(saveFileDialog1.FileName));
+                writer.Write(textBox_signature_encrypted.Text);
+                writer.Dispose();
+            }
+        }
+
+        private void upload_signature_button_Click(object sender, EventArgs e)
+        {
+            textBox_signature_origin.Clear();
+            textBox_signature_encrypted.Clear();
+            OpenFileDialog openFileDialog1 = new OpenFileDialog();
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                StreamReader reader = new StreamReader(File.OpenRead(openFileDialog1.FileName));
+                textBox_signature_origin.Text = reader.ReadToEnd();
+                reader.Dispose();
+            }
+            openFileDialog1 = new OpenFileDialog();
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                StreamReader reader = new StreamReader(File.OpenRead(openFileDialog1.FileName));
+                textBox_signature_encrypted.Text = reader.ReadToEnd();
+                reader.Dispose();
+            }
         }
     }
 }
