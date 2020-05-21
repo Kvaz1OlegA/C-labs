@@ -326,7 +326,7 @@ namespace WindowsFormsApp1
             else
                 MessageBox.Show("Generate Prime numbers!");
         }
-        //Кнопки очистки полей
+        //----------------------------------------Кнопки очистки полей-------------------------------------------
         private void clear_original_textbox_Click(object sender, EventArgs e)
         {
             textBox_original.Clear();
@@ -349,7 +349,7 @@ namespace WindowsFormsApp1
             textBox_e.Clear();
             textBox_d.Clear();
         }
-
+        //---------------------------------------------Работа с цифровой подписью--------------------------------------------
         private void digital_signature_button_Click(object sender, EventArgs e)
         {
             textBox_signature_encrypted.Clear();
@@ -400,7 +400,7 @@ namespace WindowsFormsApp1
             else
                 MessageBox.Show("The public key is missing!");
         }
-
+        //--------------------------------------------------------Кнопки работы с файлами---------------------------------------------
         private void button2_Click(object sender, EventArgs e)
         {
             SaveFileDialog saveFileDialog1 = new SaveFileDialog();
