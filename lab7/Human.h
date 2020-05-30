@@ -250,12 +250,33 @@ void DestroyChain(HumanList* list, int id, int friend_id)
 }
 //-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+void Sort(FriendList* friend_list)
+{
+	int temp;
+	NodeFriend* current_friend = friend_list->head;
+	while (current_friend->next!=NULL)
+	{
+		NodeFriend* start_friend = current_friend;
+		while (start_friend->next->next!=NULL)
+		{
+			if (start_friend->id > start_friend->next->id)
+			{
+				temp = start_friend->id;
+				start_friend->id = start_friend->next->id;
+				start_friend->next->id = temp;
+			}
+			start_friend = start_friend->next;
+		}
+		current_friend = current_friend->next;
+	}
+}
 
 //---------------------------------------------------------------------------------------------------
 void ShowFriends(HumanList* list, FriendList* friend_list)
 {
 	NodeHuman* current_human = list->head;
 	NodeFriend* current_friend = friend_list->head;
+	Sort(friend_list);
 	if (current_friend == NULL)
 		return;
 	while (current_human != NULL)
